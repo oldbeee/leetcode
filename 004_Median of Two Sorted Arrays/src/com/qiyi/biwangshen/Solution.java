@@ -1,5 +1,3 @@
-package com.qiyi.biwangshen;
-
 public class Solution {
 	public double findMedianSortedArrays(int[] nums1, int[] nums2) {
 		int n1 = nums1.length;
@@ -7,7 +5,7 @@ public class Solution {
 		if((n1+n2)%2 == 1){
 			return findNumk(nums1,n1,nums2,n2,(n1+n2)/2+1);
 		}else{
-			return (findNumk(nums1,n1,nums2,n2,(n1+n2)/2+1)+findNumk(nums1,n1,nums2,n2,(n1+n2)/2));
+			return ((findNumk(nums1,n1,nums2,n2,(n1+n2)/2+1)+findNumk(nums1,n1,nums2,n2,(n1+n2)/2)))/2;
 		}
 	}
 	public double findNumk(int[] nums1,int n1,int[] nums2,
@@ -18,6 +16,9 @@ public class Solution {
 		}
 		if(n1==0){
 			return nums2[k-1];
+		}
+		if(k==1){
+			return Math.min(nums1[k-1], nums2[k-1]);
 		}
 		int temp1 = Math.min(k/2, n1);
 		int temp2 = k-temp1;
